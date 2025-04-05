@@ -23,14 +23,30 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY", "your-default-secret-key")
 
 # Render will set RENDER_EXTERNAL_HOSTNAME environment variable in production
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # Better to control via environment variable
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'akdrive.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
 
+# For development only (when DEBUG=True), allow all hosts
+if DEBUG:
+    ALLOWED_HOSTS += ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://akdrive.onrender.com',
+    'https://*.onrender.com'
+]
+
+# For production on Render
 if not DEBUG:
-    ALLOWED_HOSTS.append(os.environ.get('RENDER_EXTERNAL_HOSTNAME'))
-
-
+    RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+    if RENDER_EXTERNAL_HOSTNAME:
+        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+        CSRF_TRUSTED_ORIGINS.append(f'https://{RENDER_EXTERNAL_HOSTNAME}')
+        
 # Application definition
 
 INSTALLED_APPS = [
