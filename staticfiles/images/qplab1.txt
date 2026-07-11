@@ -1,0 +1,46 @@
+A university wants to maintain a database for managing books and students who borrow them. The database consists of two tables:  
+
+1. Books – Stores information about books available in the library.  
+2. Students – Stores details of students who borrow books.  
+
+Questions:
+
+1. Create a table "books" with the following structure:  
+   - bookid (integer, Primary Key)  
+   - title (varchar(100), Cannot be NULL)  
+   - author (varchar(50), Cannot be NULL)  
+   - price (decimal(6,2), Default value 0.00)  
+
+2. Create a table "students" with the following structure:  
+   - studentid (integer, Primary Key)  
+   - name (varchar(100), Cannot be NULL)  
+   - course (varchar(50), Default value 'MCA')  
+   - age (integer, Check constraint: Value should be between 20 and 40)  
+
+3. Alter the "books" table to:  
+   - Add a column "publication_date" (integer).  
+   - Modify the "price" column to have a default value of 100.00.  
+
+
+4. Insert the following records into the "books" table:
+
+   - 1, Database Systems, Ramez Elmasri, 10th october 1976, 500.00
+   - 2, Operating System Concepts, Silberschatz, 20th november 1960, 650.00
+   - 3, Computer Networks, Andrew S. Tanenbaum, 17th february 2000, 700.00
+   - 4, Algorithms, Cormen, 23rd january 2011
+
+5. Insert the following records into the "students" table:  
+   
+   - 101, Midhun K, MCA, 22
+   - 102, Ann Mariya, MCA, 30
+   - 103, Sidharth M, MCA, 21
+
+6. Update the price of the book "Operating System Concepts" to 700.00.  
+
+7. Delete the book with "bookid = 3" from the "books" table.  
+
+8. Increase the price of all books by 10%.  
+
+9. Remove the column "publication_date" from the "books" table.
+
+10. remove the "students" table. 
