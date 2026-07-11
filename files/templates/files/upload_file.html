@@ -1,0 +1,13 @@
+<h2>Upload File</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="id_folder">Select Folder:</label>
+    {{ form.folder }}
+    
+    <label for="id_file">Upload File:</label>
+    {{ form.file }}
+
+    <button type="submit">Upload</button>
+</form>
+
+<a href="{% url 'dashboard' %}">Back to Dashboard</a>

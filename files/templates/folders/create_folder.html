@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Folder</title>
+    <!-- FontAwesome for Icons -->
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #a5a58d, #6b705c);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Container */
+.container {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+/* Title */
+h2 {
+    color: #2d6a4f;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #a5a58d;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #40916c;
+    outline: none;
+}
+
+/* Submit Button */
+button {
+    background: #40916c;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+button:hover {
+    background: #2d6a4f;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Back to Dashboard Link */
+.dashboard-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #2d6a4f;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.dashboard-link:hover {
+    color: #40916c;
+}
+
+/* Logout Button */
+.logout-container {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.logout-link {
+    color: #2d6a4f;
+    text-decoration: none;
+    font-size: 22px;
+    transition: color 0.3s ease-in-out;
+}
+
+.logout-link:hover {
+    color: #40916c;
+}
+
+.logout-icon {
+    font-size: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+
+    .logout-icon {
+        font-size: 20px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Logout Button -->
+        <div class="logout-container">
+            <a href="{% url 'logout' %}" class="logout-link">
+                <abbr title="Logout">
+                    <i class="fas fa-sign-out-alt logout-icon"></i>
+                </abbr>
+            </a>
+        </div>
+
+        <h2>Create a New Folder</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Create Folder</button>
+        </form>
+        <a href="{% url 'dashboard' %}" class="dashboard-link">Back to Dashboard</a>
+    </div>
+
+</body>
+</html>
